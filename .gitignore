@@ -137,3 +137,7 @@ ehthumbs.db
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
+
+# Mac
+.DS_Store
+*.DS_Store

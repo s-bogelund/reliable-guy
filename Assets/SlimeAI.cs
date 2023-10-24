@@ -10,11 +10,13 @@ public class SlimeAI : MonoBehaviour
 
     private float distance;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -23,10 +25,11 @@ public class SlimeAI : MonoBehaviour
         Vector2 direction = target.transform.position - transform.position;
 
 
-        if(distance < aggroRange)
+        if (distance < aggroRange)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, target.transform.position, speed * Time.deltaTime);
-            if(direction.x < 0)
+            animator.SetFloat("moveSpeed", 1);
+            if (direction.x < 0)
             {
                 spriteRenderer.flipX = true;
             }
@@ -34,6 +37,10 @@ public class SlimeAI : MonoBehaviour
             {
                 spriteRenderer.flipX = false;
             }
+        }
+        else
+        {
+            animator.SetFloat("moveSpeed", 0);
         }
     }
 }

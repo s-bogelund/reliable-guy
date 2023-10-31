@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.FSM
+namespace AI.FSM.States
 {
     public class BaseState: ScriptableObject
     {

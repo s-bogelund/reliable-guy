@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace AI.FSM
+namespace AI.FSM.States
 {
-    [CreateAssetMenu(menuName = "AI/FSM/Remain In State", fileName = "RemainInState")]
+    [CreateAssetMenu(menuName = "AI/FSM/State/Remain In State", fileName = "RemainInState")]
     public class RemainInState : BaseState
     {
         // Empty on purpose

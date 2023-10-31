@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using AI.FSM.Transitions;
+using UnityEngine;
 
-namespace AI.FSM
+namespace AI.FSM.States
 {
+    [CreateAssetMenu(menuName = "AI/FSM/State/State")]
     // Once a class is defined as a sealed class, this class cannot be inherited
     public sealed class State: BaseState
     {
-        public List<Activity> Activities = new List<Activity>();
+        public List<Activity.Activity> Activities = new List<Activity.Activity>();
         public List<Transition> Transitions = new List<Transition>();
 
         public override void Enter(BaseStateMachine stm)

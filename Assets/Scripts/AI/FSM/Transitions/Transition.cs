@@ -1,7 +1,8 @@
-using System;
+using AI.FSM.Decisions;
+using AI.FSM.States;
 using UnityEngine;
 
-namespace AI.FSM
+namespace AI.FSM.Transitions
 {
     [CreateAssetMenu(menuName = "AI/FSM/Transition")] // This attribute allows us to create a new Transition asset in the project window
     public sealed class Transition : ScriptableObject

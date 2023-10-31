@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.FSM
+namespace AI.FSM.Activity
 {
     public abstract class Activity : ScriptableObject
     {

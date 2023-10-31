@@ -1,10 +1,12 @@
 using UnityEngine;
 
-namespace AI.FSM
+namespace AI.FSM.Decisions
 {
+    [CreateAssetMenu(menuName = "AI/FSM/Decision/Distance To Player", fileName = "DistanceToPlayer")]
     public class DistanceToPlayer: Decision
     {
-        public float distanceThreshold;
+        public float distanceUpperThreshold = float.MaxValue;
+        public float distranceLowerThreshold = float.MinValue;
         public string targetTag;
         private GameObject _target;
         
@@ -15,6 +17,7 @@ namespace AI.FSM
 
         public override bool Decide(BaseStateMachine stm)
         {
+            _target = GameObject.FindWithTag(targetTag);
             if (_target == null)
             {
                 Debug.LogWarning("Target is null");
@@ -23,7 +26,7 @@ namespace AI.FSM
             
             float distance = Vector3.Distance(stm.transform.position, _target.transform.position);
             
-            return distance <= distanceThreshold;
+            return distance <= distanceUpperThreshold && distance >= distranceLowerThreshold;
         }
     }
 }

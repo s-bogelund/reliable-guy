@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.FSM
+namespace AI.FSM.Decisions
 {
     public abstract class Decision: ScriptableObject
     {

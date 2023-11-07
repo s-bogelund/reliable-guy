@@ -10,16 +10,15 @@ public class DoorScript : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            if (other.gameObject.GetComponent<PlayerScript>().hasKey)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+    // private void OnTriggerEnter(Collider2D other)
+    // {
+    //     if (other.gameObject.tag == "Player")
+    //     {
+    //         {
+    //             Destroy(gameObject);
+    //         }
+    //     }
+    // }
     // Update is called once per frame
     void Update()
     {

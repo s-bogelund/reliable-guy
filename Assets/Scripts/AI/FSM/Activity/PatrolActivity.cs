@@ -25,7 +25,7 @@ namespace AI.FSM.Activity
             Vector2 dir = patrolPoints.GetTargetPointDirection();
             
             rigidBody.velocity = new Vector2(dir.x * patrolMoveSpeed, dir.y * patrolMoveSpeed);
-            spriteRenderer.flipX = dir.x > 0;
+            spriteRenderer.flipX = dir.x < 0;
         }
 
         public override void Exit(BaseStateMachine stm)

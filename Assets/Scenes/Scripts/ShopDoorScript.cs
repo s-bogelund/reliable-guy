@@ -8,7 +8,7 @@ public class ShopDoorScript : SceneChangeTrigger
 {
 
 
-
+    public Vector3 playerPositionInNewScene;
 
     protected override void TriggerSceneChange()
     {
@@ -19,6 +19,9 @@ public class ShopDoorScript : SceneChangeTrigger
         }
         else
         {
+            Vector2 playerPosition = new Vector2(-2.312f, -2.93f);    
+                // SceneController.Instance.SetNextPlayerPosition(playerPositionInNewScene);
+                PlayerController.NextInitialPosition = playerPosition;
             LoadSceneByName("Town");
         }
     }

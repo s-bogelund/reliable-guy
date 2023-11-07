@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
-
+    public static Vector2? NextInitialPosition;
+    
     private Vector2 _movementInput;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb2d;
@@ -35,6 +36,10 @@ public class PlayerController : MonoBehaviour
         _rb2d = GetComponent<Rigidbody2D>(); // This is basically the way you access components of the game object
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (!NextInitialPosition.HasValue) return;
+        _rb2d.position = NextInitialPosition.Value;
+        NextInitialPosition = null; 
     }
 
     private void FixedUpdate()
@@ -124,5 +129,10 @@ public class PlayerController : MonoBehaviour
     {
         swordAttack.StopAttack();
     }
+    public static void SetNextInitialPosition(Vector2 position)
+    {
+        NextInitialPosition = position;
+    }
+    
 
 }

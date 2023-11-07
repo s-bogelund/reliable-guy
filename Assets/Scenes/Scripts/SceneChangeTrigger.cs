@@ -6,7 +6,13 @@ namespace Scenes.Scripts
 {
 	public abstract class SceneChangeTrigger : MonoBehaviour
 	{
-
+    
+    
+		protected virtual void Awake()
+		{
+			
+		}
+    
 		protected virtual void OnTriggerEnter2D(Collider2D other)
 		{
 			if (other.CompareTag("Player"))
@@ -26,7 +32,12 @@ namespace Scenes.Scripts
 		{
 			return SceneManager.GetActiveScene().name;
 		}
-
+		
+		protected virtual void Start()
+		{
+			// If you need to access the scene name
+			// string sceneName = CurrentScene.name;
+        
 		}
 		
 	}

@@ -14,6 +14,12 @@ public class Dialog
         sentences = new string[0];
         name = "";
     }
+
+    public Dialog(Dialog dialog)
+    {
+        sentences = dialog.sentences;
+        name = dialog.name;
+    }
     public Dialog(string name, string[] sentences)
     {
         this.name = name;

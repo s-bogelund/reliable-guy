@@ -7,7 +7,12 @@ using UnityEngine;
 public class DialogTrigger : MonoBehaviour
 {
     public Dialog[] Dialogs;
+    DialogManager _dialogManager ;
 
+    private void Start()
+    {
+        _dialogManager = FindObjectOfType<DialogManager>();
+    }
     public void TriggerDialog()
     {
         foreach (Dialog dialog in Dialogs)
@@ -16,9 +21,8 @@ public class DialogTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private  void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Triggered");
         if (collision != null)
         {
         
@@ -27,8 +31,9 @@ public class DialogTrigger : MonoBehaviour
                 Debug.Log(Dialogs[0].name);
                 foreach (Dialog dialog in Dialogs)
                 {
-                    FindObjectOfType<DialogManager>().StartDialog(dialog);
+                     _dialogManager.StartDialog(dialog);
                 }
+                _dialogManager.DisplayNextSentence();
                 Destroy(gameObject);
             }
         }

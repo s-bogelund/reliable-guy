@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,11 +11,13 @@ public class DialogManager : MonoBehaviour
     public Animator animator;
     public Text nameText;
     public Text dialogText;
-    private Queue<string> sentences;
+    private Queue<Dialog> dialogs;
+    private Dialog currentDialog;
     // Start is called before the first frame update
     void Start()
     {
-        sentences = new Queue<string>();
+        dialogs = new Queue<Dialog>(10000);
+        currentDialog = new Dialog();
         dialogAdvance.Enable();
     }
 
@@ -29,27 +32,37 @@ public class DialogManager : MonoBehaviour
     public void StartDialog(Dialog dialog)
     {
         Debug.Log("Starting conversation with " + dialog.name);
-        nameText.text = dialog.name;
-        sentences.Clear();
         animator.SetBool("IsOpen", true);
-        foreach (string sentence in dialog.sentences)
-        {
-            sentences.Enqueue(sentence);
-        }
-        DisplayNextSentence();
+        dialogs.Enqueue(dialog);
+
     }
 
     public void DisplayNextSentence()
     {
-        
-            if (sentences.Count <= 0)
+        Debug.Log(dialogs.Count);
+           
+            if (currentDialog?.sentences.Length <= 0)
             {
-                EndDialog();
-                return;
+                if (dialogs.Count <= 0)
+                {
+                    EndDialog();
+                    return;
+                }
+            Debug.Log("dequeuing dialog");
+            currentDialog = dialogs.Dequeue();
+            nameText.text = currentDialog.name;
             }
 
-            dialogText.text = sentences.Dequeue();
-        
+            if (currentDialog != null)
+            {
+                Debug.Log("Displaying next sentence" + currentDialog.sentences[0]);
+                dialogText.text = currentDialog.sentences[0];
+                currentDialog.sentences = currentDialog.sentences[1..];
+            }
+        else
+        {
+            Debug.LogError("currentDialog is null. Make sure it's properly initialized.");
+        }
     }
 
     public void EndDialog()

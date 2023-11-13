@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using Scenes.Scripts;
-using UnityEngine;
 
 public class DungeonDoorScript : SceneChangeTrigger
 {
@@ -10,5 +8,4 @@ public class DungeonDoorScript : SceneChangeTrigger
     {
         LoadSceneByName("Biome1_Dungeon");
     }
-
 }

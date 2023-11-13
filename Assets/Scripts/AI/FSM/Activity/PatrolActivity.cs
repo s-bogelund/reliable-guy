@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AI.FSM.Activity
@@ -23,9 +24,9 @@ namespace AI.FSM.Activity
             var rigidBody = stm.GetComponent<Rigidbody2D>();
             var spriteRenderer = stm.GetComponent<SpriteRenderer>();
             Vector2 dir = patrolPoints.GetTargetPointDirection();
+            stm.GetComponent<EnemyState>().flipSprite(patrolPoints.GetTargetPointDirection().x);
             
             rigidBody.velocity = new Vector2(dir.x * patrolMoveSpeed, dir.y * patrolMoveSpeed);
-            spriteRenderer.flipX = dir.x < 0;
         }
 
         public override void Exit(BaseStateMachine stm)

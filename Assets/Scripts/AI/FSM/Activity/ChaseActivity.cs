@@ -26,7 +26,7 @@ namespace AI.FSM.Activity
             Vector2 dir = (target.transform.position - stateMachine.transform.position).normalized;
             // TODO: Find out if the speed is inpamcted by computer performance, since deltaTime is not used
             RigidBody.velocity = new Vector2(dir.x * speed, dir.y * speed);
-            SpriteRenderer.flipX = dir.x < 0;
+            stateMachine.GetComponent<EnemyState>().flipSprite(dir.x);
         }
 
         public override void Exit(BaseStateMachine stateMachine)

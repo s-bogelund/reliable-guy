@@ -48,5 +48,16 @@ public class EnemyState : MonoBehaviour
     {
         _executionNumber = 0;
     }
+
+    public void flipSprite(float xDir)
+    {
+        if ((xDir > 0 && transform.localScale.x != 1) ||
+            (xDir < 0 && transform.localScale.x != -1))
+        {
+            Vector3 transformScale = transform.localScale;
+            transformScale.x *= -1;
+            transform.localScale = transformScale;
+        }
+    }
     
 }

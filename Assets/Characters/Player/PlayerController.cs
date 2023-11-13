@@ -20,15 +20,19 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
+  
 
     private Vector2 _movementInput;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb2d;
     private Animator _animator;
     private List<RaycastHit2D> _castCollisions = new List<RaycastHit2D>(); // Raycast is use to check if a move i valid before we perform the move (i.e. not valid if you try to go through a wall)
-
-    private bool _isMoving = false;
     
+    [SerializeField]
+    private AudioSource SwordAttackSound;
+    
+    private bool _isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -110,6 +114,7 @@ public class PlayerController : MonoBehaviour
 
     public void SwordAttack()
     {
+        SwordAttackSound.Play();
         if (_spriteRenderer.flipX)
         {
             swordAttack.AttackLeft();
@@ -118,6 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             swordAttack.AttackRight();
         }
+       
     }
     
     public void EndSwordAttack()

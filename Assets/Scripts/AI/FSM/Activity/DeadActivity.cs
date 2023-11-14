@@ -12,6 +12,8 @@ namespace AI.FSM.Activity
         {
             _enemyState = stm.GetComponent<EnemyState>();
             // TODO: stm.GetComponent<AudioSource>().PlayOneShot(deathClip);
+            Debug.Log("Entered DeadActivity");
+
         }
 
         public override void Execute(BaseStateMachine stm)
@@ -25,10 +27,14 @@ namespace AI.FSM.Activity
             {
                 stm.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.Lerp(1, 0, _enemyState.deadTimer));
             }
+            Debug.Log("Executing WaitActivity");
+
         }
 
         public override void Exit(BaseStateMachine stm)
         {
+            Debug.Log("Exited WaitActivity");
+
         }
     }
 }

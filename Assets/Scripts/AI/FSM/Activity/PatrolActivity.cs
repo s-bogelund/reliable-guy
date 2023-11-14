@@ -16,6 +16,9 @@ namespace AI.FSM.Activity
 
             spriteRenderer.flipX = patrolPoints.GetTargetPointDirection().x > 0;
             animator.SetFloat("moveSpeed", 1);
+
+            Debug.Log("Entered PatrolActivity");
+
         }
 
         public override void Execute(BaseStateMachine stm)
@@ -27,12 +30,16 @@ namespace AI.FSM.Activity
             stm.GetComponent<EnemyState>().flipSprite(patrolPoints.GetTargetPointDirection().x);
             
             rigidBody.velocity = new Vector2(dir.x * patrolMoveSpeed, dir.y * patrolMoveSpeed);
+            Debug.Log("Executing PatrolActivity");
+
         }
 
         public override void Exit(BaseStateMachine stm)
         {
             var patrolPoints = stm.GetComponent<PatrolPoints>();
             patrolPoints.SetNextPatrolPoint();
+            Debug.Log("Exited PatrolActivity");
+
         }
     }
 }

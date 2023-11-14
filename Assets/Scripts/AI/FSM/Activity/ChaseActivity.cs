@@ -15,6 +15,8 @@ namespace AI.FSM.Activity
             stateMachine.GetComponent<Animator>().SetFloat("moveSpeed", 1);
 
             // TODO: Look into changin movespeed into a bool here aswell
+            Debug.Log("Entered ChaseActivity");
+
         }
 
         public override void Execute(BaseStateMachine stateMachine)
@@ -27,10 +29,13 @@ namespace AI.FSM.Activity
             // TODO: Find out if the speed is inpamcted by computer performance, since deltaTime is not used
             RigidBody.velocity = new Vector2(dir.x * speed, dir.y * speed);
             stateMachine.GetComponent<EnemyState>().flipSprite(dir.x);
+            Debug.Log("Executing ChaseActivity");
+
         }
 
         public override void Exit(BaseStateMachine stateMachine)
         {
+            Debug.Log("Exited ChaseActivity");
         }
     }
 }

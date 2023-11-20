@@ -7,6 +7,7 @@ namespace AI.FSM.Activity
     {
         public AudioClip deathClip = null;
         private EnemyState _enemyState;
+        public float dampingFactor;
         
         public override void Enter(BaseStateMachine stm)
         {
@@ -24,7 +25,10 @@ namespace AI.FSM.Activity
             }
             else
             {
-                stm.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.Lerp(1, 0, _enemyState.deadTimer));
+                Rigidbody2D rb = stm.GetComponent<Rigidbody2D>();
+                rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime * dampingFactor);
+
+                stm.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.Lerp(1, 0, _enemyState.deadTimer / 5f));
             }
         }
 

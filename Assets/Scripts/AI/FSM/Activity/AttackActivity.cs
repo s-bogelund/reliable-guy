@@ -23,7 +23,6 @@ namespace AI.FSM.Activity
             // This is left empty as the Attack animation is set to loop hence the ExecuteAttack function will be called repeatedly
             // If we wish a more random attack pattern, we can add a random timer here to call ExecuteAttack
             _timer += Time.deltaTime;
-            Debug.Log(_timer);
             if (_timer >= attackDelay)
             {
                 var animator = stm.GetComponent<Animator>();

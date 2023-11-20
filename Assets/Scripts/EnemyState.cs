@@ -16,7 +16,7 @@ public class EnemyState : MonoBehaviour
     public Vector2 hitDir;
     public Rigidbody2D RigidBody;
     public float attackRange = 0.25f;
-    public float damage = 1f;
+    public int damage = 1;
     
     private int _executionNumber = 0;
     
@@ -25,6 +25,7 @@ public class EnemyState : MonoBehaviour
     public void ExecuteAttack()
     {
         // TODO: Play sound effect
+        Debug.Log("Enemy attacks!");
         
         _executionNumber++;
         if (_executionNumber == 1)
@@ -38,8 +39,7 @@ public class EnemyState : MonoBehaviour
             // hitTarget[0] is the player due to enemyLayer
             if (hitTarget.Length > 0 && hitTarget[0] != null)
             {
-                throw new System.NotImplementedException();
-                // TODO: GameManager.instance.substractHP(damage);
+                GameManager.Instance.substractHP(damage);
             }
         }
     }

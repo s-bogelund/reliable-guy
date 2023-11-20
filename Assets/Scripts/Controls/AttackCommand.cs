@@ -13,23 +13,28 @@ namespace Controls
 
         public AudioClip swingClip = null; // TODO
 
-        private GameObject _gameObject;
+        private GameObject _gameObject = null;
         
         public override void Execute(InputAction action, GameObject gameObject)
         {
-            _gameObject ??= gameObject;
+            if (!_gameObject)
+                _gameObject = gameObject;
             if (action.WasPressedThisFrame())
             {
                 _attack = true;
             }
 
             if (_attack)
-                gameObject.GetComponent<Animator>().SetTrigger("swordAttack");
+            {
+                _attack = false; // Need to do this to avoud multiple attack animations from playing in a row
+                _gameObject.GetComponent<Animator>().SetTrigger("swordAttack");
+            }
         }
         
         public override void FixedExecute(InputAction action, GameObject gameObject)
         {
-            _gameObject ??= gameObject;
+            if (!_gameObject)
+                _gameObject = gameObject;
         }
 
         public void ExecuteAttack()

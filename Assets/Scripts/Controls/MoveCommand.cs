@@ -27,6 +27,7 @@ namespace Controls
                 
                 animator.SetFloat("horizontal", moveDirection.x);
                 animator.SetFloat("vertical", moveDirection.y);
+                Debug.Log(moveDirection);
             }
             gameObject.GetComponent<Animator>().SetFloat("moveSpeed", moveDirection.sqrMagnitude);
         }

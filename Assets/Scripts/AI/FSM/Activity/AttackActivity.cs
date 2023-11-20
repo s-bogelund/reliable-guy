@@ -10,7 +10,9 @@ namespace AI.FSM.Activity
         public override void Enter(BaseStateMachine stm)
         {
             stm.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            stm.GetComponent<Animator>().Play("Attack"); // TODO: I don't think this is the right way to do this
+            var animator = stm.GetComponent<Animator>();
+            animator.SetFloat("moveSpeed", 0);
+            animator.SetTrigger("attack");
             Debug.Log("Entered AttackActivity");
         }
 
@@ -18,6 +20,7 @@ namespace AI.FSM.Activity
         {
             // This is left empty as the Attack animation is set to loop hence the ExecuteAttack function will be called repeatedly
             // If we wish a more random attack pattern, we can add a random timer here to call ExecuteAttack
+            
         }
 
         public override void Exit(BaseStateMachine stm)

@@ -16,8 +16,6 @@ namespace AI.FSM.Activity
             
             // TODO: stm.GetComponent<AudioSource>().PlayOneShot(hitClip);
             stm.GetComponent<Rigidbody2D>().AddForce(new Vector2(_enemyState.hitDir.x, _enemyState.hitDir.y) * 100f, ForceMode2D.Impulse);
-            Debug.Log("Entered StunnedActivity");
-
         }
 
         public override void Execute(BaseStateMachine stm)
@@ -36,14 +34,10 @@ namespace AI.FSM.Activity
                     }
                 }
             }
-            Debug.Log("Executing StunnedActivity");
-
         }
 
         public override void Exit(BaseStateMachine stm)
         {
-            Debug.Log("Exited StunnedActivity");
-
         }
     }
 }

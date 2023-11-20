@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,13 +18,12 @@ namespace AI.FSM.Activity
         {
             // This is left empty as the Attack animation is set to loop hence the ExecuteAttack function will be called repeatedly
             // If we wish a more random attack pattern, we can add a random timer here to call ExecuteAttack
-            Debug.Log("Executing AttackActivity");
         }
 
         public override void Exit(BaseStateMachine stm)
         {
             stm.GetComponent<Animator>().Play("Idle");
-            Debug.Log("Exiting AttackActivity");
+            Debug.Log("Exited AttackActivity");
         }
     }
 }

@@ -15,7 +15,8 @@ namespace AI.FSM.Activity
             _enemyState = stm.GetComponent<EnemyState>();
             
             // TODO: stm.GetComponent<AudioSource>().PlayOneShot(hitClip);
-            stm.GetComponent<Rigidbody2D>().AddForce(new Vector2(_enemyState.hitDir.x, _enemyState.hitDir.y) * 100f, ForceMode2D.Impulse);
+            stm.GetComponent<Animator>().SetTrigger("hit");
+            stm.GetComponent<Rigidbody2D>().AddForce(new Vector2(_enemyState.hitDir.x, _enemyState.hitDir.y) * 3f, ForceMode2D.Impulse);
         }
 
         public override void Execute(BaseStateMachine stm)

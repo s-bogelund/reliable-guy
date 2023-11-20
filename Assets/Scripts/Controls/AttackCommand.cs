@@ -10,6 +10,7 @@ namespace Controls
         private bool _attack = false;
         private int _executionNumber = 0;
         public float attackRange = 0.25f;
+        private bool alreadyPlayedAnimation = false;
 
         public AudioClip swingClip = null; // TODO
 
@@ -24,9 +25,9 @@ namespace Controls
                 _attack = true;
             }
 
-            if (_attack)
+            if (_attack && !alreadyPlayedAnimation)
             {
-                _attack = false; // Need to do this to avoud multiple attack animations from playing in a row
+                alreadyPlayedAnimation = true;
                 _gameObject.GetComponent<Animator>().SetTrigger("swordAttack");
             }
         }
@@ -61,6 +62,7 @@ namespace Controls
         
         public void ResetAttack()
         {
+            alreadyPlayedAnimation = false;
             _attack = false;
             _executionNumber = 0;
         }

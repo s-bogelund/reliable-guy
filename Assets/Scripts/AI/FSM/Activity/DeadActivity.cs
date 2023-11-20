@@ -11,13 +11,14 @@ namespace AI.FSM.Activity
         public override void Enter(BaseStateMachine stm)
         {
             _enemyState = stm.GetComponent<EnemyState>();
+            stm.GetComponent<Animator>().SetTrigger("Defeated");
             // TODO: stm.GetComponent<AudioSource>().PlayOneShot(deathClip);
         }
 
         public override void Execute(BaseStateMachine stm)
         {
             _enemyState.deadTimer += Time.deltaTime;
-            if (_enemyState.deadTimer >= 1f)
+            if (_enemyState.deadTimer >= 5f)
             {
                 Destroy(stm.GetComponentInParent<Transform>().gameObject);
             }

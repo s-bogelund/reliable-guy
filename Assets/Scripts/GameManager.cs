@@ -1,4 +1,5 @@
 using System;
+using Controls;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
                 _isDead = true;
                 // Get the players animator and set the dead trigger
                 player.GetComponent<Animator>().SetTrigger("dead");
+                player.GetComponent<InputHandler>().enabled = false;
             }
             else
             {

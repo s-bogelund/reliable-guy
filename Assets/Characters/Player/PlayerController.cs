@@ -127,11 +127,21 @@ public class PlayerController : MonoBehaviour
     //     swordAttack.StopAttack();
     // }
 
+    public static Vector2? NextInitialPosition;
+    private Rigidbody2D _rb2d;
+
     public ActionsCommandsScheme gameplayScheme;
     
     private void Start()
     {
+        _rb2d = GetComponent<Rigidbody2D>();
+
         ActivateGameplayScheme();
+        
+        if (!NextInitialPosition.HasValue) return;
+        _rb2d.position = NextInitialPosition.Value;
+        NextInitialPosition = null; 
+
     }
     
     public void ActivateGameplayScheme()
@@ -141,5 +151,10 @@ public class PlayerController : MonoBehaviour
  
         // ... and make them active!
         InputHandler.instance.UpdateActionsCommandsBindings();
+    }
+
+    public static void SetNextInitialPosition(Vector2 position)
+    {
+        NextInitialPosition = position;
     }
 }

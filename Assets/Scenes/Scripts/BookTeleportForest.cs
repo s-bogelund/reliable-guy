@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using Scenes.Scripts;
+using UnityEngine;
+
+public class BookTeleportForest : SceneChangeTrigger
+{
+    public float interactionDistance = 2f; // Distance within which interaction is possible
+    private PlayerController _playerController; // Reference to the PlayerController script
+    private SpriteRenderer _playerSpriteRenderer;
+    
+    private bool _isInitialized = false;
+    void Start()
+    {
+        // Find the player's GameObject and get the required components
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Ensure your player GameObject has the "Player" tag
+        _playerController = player.GetComponent<PlayerController>();
+        _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
+        
+        // TODO: SHOULD BE FALSE WHEN GAMEMANAGER IS IMPLEMENTED
+        gameObject.SetActive(true);
+    }
+    
+    void Update()
+    {
+        // REMOVE COMMENTATION WHEN GAMEMANAGER HAS BEEN IMPLEMENTED
+        
+        // if (!_isInitialized && GameManager.Instance.SecondLevelCompleted)
+        // {
+        //     gameObject.SetActive(true);
+        //     _isInitialized = true;
+        // }
+        //
+        // if (!GameManager.Instance.SecondLevelCompleted || !gameObject.activeSelf)
+        //     return;
+        
+        if (Vector3.Distance(transform.position, _playerController.transform.position) <= interactionDistance && IsPlayerFacingItem())
+        {
+            CheckForInteractionInput();
+        }
+    }
+
+    bool IsPlayerFacingItem()
+    {
+        Vector3 directionToItem = (transform.position - _playerController.transform.position).normalized;
+        bool isFacingRight = !_playerSpriteRenderer.flipX;
+        float dotProduct = Vector3.Dot(isFacingRight ? Vector3.right : Vector3.left, directionToItem);
+        return dotProduct > 0;
+    }
+
+    void CheckForInteractionInput()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TriggerSceneChange();
+        }
+    }
+
+    protected override void TriggerSceneChange()
+    {
+        Vector2 playerPosition = new Vector2(0.38f, -2.495f);    
+        PlayerController.NextInitialPosition = playerPosition;
+            
+        LoadSceneByName("Town");
+    }
+}

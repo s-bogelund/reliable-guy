@@ -23,7 +23,7 @@ namespace Scenes.Scripts
 			var mainCamera = GameObject.Find("Main Camera");
 			var cineBrain = mainCamera.GetComponent<CinemachineBrain>();
 
-			// cineBrain.enabled = false;
+			cineBrain.enabled = false;
 			if (_hasCompletedTutorial)
 			{
 				if (_isComingFromShop)
@@ -46,7 +46,7 @@ namespace Scenes.Scripts
 
 			yield return new WaitForEndOfFrame();
 
-			// cineBrain.enabled = true;
+			cineBrain.enabled = true;
 
 
 

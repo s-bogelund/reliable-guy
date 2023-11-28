@@ -8,12 +8,12 @@ public class BookTeleportForest : SceneChangeTrigger
     public float interactionDistance = 2f; // Distance within which interaction is possible
     private PlayerController _playerController; // Reference to the PlayerController script
     private SpriteRenderer _playerSpriteRenderer;
-    
+    public GameObject player;
     private bool _isInitialized = false;
     void Start()
     {
         // Find the player's GameObject and get the required components
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Ensure your player GameObject has the "Player" tag
+        player = GameObject.FindGameObjectWithTag("Player"); // Ensure your player GameObject has the "Player" tag
         _playerController = player.GetComponent<PlayerController>();
         _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
         
@@ -58,8 +58,8 @@ public class BookTeleportForest : SceneChangeTrigger
 
     protected override void TriggerSceneChange()
     {
-        Vector2 playerPosition = new Vector2(0.38f, -2.495f);    
-        PlayerController.NextInitialPosition = playerPosition;
+        Vector2 playerPosition = new Vector2(0.602f, -2.494f);    
+        player.transform.position = playerPosition;
             
         LoadSceneByName("Town");
     }

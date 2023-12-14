@@ -8,14 +8,14 @@ namespace Scenes.Scripts
 	public class InitializeCameraPosition : MonoBehaviour
 	{
 		// TODO: SET TO GAMEMANAGER STATE IN START
-		private bool _hasCompletedTutorial = true;
+		private bool _hasCompletedTutorial = false;
 		private bool _isComingFromShop = false;
 
 		private void Awake()
 		{
 			// CHECK GAME STATE FOR TUTORIAL COMPLETION AND CURRENTSCENE
-			_hasCompletedTutorial = true;
-			_isComingFromShop = true;
+			_hasCompletedTutorial = false;
+			_isComingFromShop = false;
 		}
 
 		IEnumerator Start()

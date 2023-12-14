@@ -1,3 +1,12 @@
 fileFormatVersion: 2
 guid: cf1fefcfa31c45efa79a6ebde0df065e
-timeCreated: 1699365291
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - swingClip: {fileID: 8300000, guid: 767d53b05fc75614f84e21aeb9bf702d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -12,7 +12,7 @@ namespace Controls
         public float attackRange = 0.25f;
         private bool _alreadyPlayedAnimation = false;
 
-        public AudioClip swingClip = null; // TODO
+        public AudioClip swingClip;
 
         private GameObject _gameObject = null;
         
@@ -42,7 +42,7 @@ namespace Controls
         {
             if (_attack)
             {
-                // TODO: _gameObject.GetComponent<AudioSource>().PlayOneShot(swingClip);
+                _gameObject.GetComponent<AudioSource>().PlayOneShot(swingClip, 0.15f);
 
                 _executionNumber++;
                 // Make sure the attack is only executed once, and can't be executed before the animation resets

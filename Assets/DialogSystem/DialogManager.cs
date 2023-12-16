@@ -19,6 +19,7 @@ public class DialogManager : MonoBehaviour
         dialogs = new Queue<Dialog>(10000);
         currentDialog = new Dialog();
         dialogAdvance.Enable();
+        animator.SetBool("IsOpen", false);
     }
 
     void Update()

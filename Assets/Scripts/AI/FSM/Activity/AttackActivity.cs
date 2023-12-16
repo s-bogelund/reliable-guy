@@ -34,7 +34,7 @@ namespace AI.FSM.Activity
 
         public override void Exit(BaseStateMachine stm)
         {
-            stm.GetComponent<Animator>().Play("Idle");
+            stm.GetComponent<Animator>().SetFloat("moveSpeed", 1);
         }
     }
 }

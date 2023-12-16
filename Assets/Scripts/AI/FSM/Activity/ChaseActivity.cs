@@ -12,9 +12,10 @@ namespace AI.FSM.Activity
         public override void Enter(BaseStateMachine stateMachine)
         {
             target = GameObject.FindWithTag(targetTag);
+            Debug.Log(target.tag);
             stateMachine.GetComponent<Animator>().SetFloat("moveSpeed", 1);
+            Debug.Log("ChaseActivity Enter");
 
-            // TODO: Look into changin movespeed into a bool here aswell
         }
 
         public override void Execute(BaseStateMachine stateMachine)
@@ -30,6 +31,7 @@ namespace AI.FSM.Activity
 
         public override void Exit(BaseStateMachine stateMachine)
         {
+            Debug.Log("ChaseActivity Exit");
         }
     }
 }

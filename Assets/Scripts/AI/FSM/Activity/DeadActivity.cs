@@ -13,6 +13,16 @@ namespace AI.FSM.Activity
         {
             _enemyState = stm.GetComponent<EnemyState>();
             stm.GetComponent<Animator>().SetTrigger("Defeated");
+            
+            if (stm.gameObject.name == "Cacodaemon")
+            {
+                BossDoorController[] bossDoorControllers = GameObject.FindObjectsOfType<BossDoorController>();
+                foreach(BossDoorController controller in bossDoorControllers)
+                {
+                    controller.OpenDoor();
+                }
+            }
+            
             // TODO: stm.GetComponent<AudioSource>().PlayOneShot(deathClip);
         }
 

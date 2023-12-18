@@ -12,7 +12,6 @@ namespace AI.FSM.Activity
         public override void Enter(BaseStateMachine stateMachine)
         {
             target = GameObject.FindWithTag(targetTag);
-            Debug.Log(target.tag);
             stateMachine.GetComponent<Animator>().SetFloat("moveSpeed", 1);
             Debug.Log("ChaseActivity Enter");
 

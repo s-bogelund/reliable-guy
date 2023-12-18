@@ -22,8 +22,8 @@ namespace AI.FSM.Activity
                     controller.OpenDoor();
                 }
             }
-            
-            // TODO: stm.GetComponent<AudioSource>().PlayOneShot(deathClip);
+            if (deathClip != null)
+                stm.GetComponent<AudioSource>().PlayOneShot(deathClip);
         }
 
         public override void Execute(BaseStateMachine stm)

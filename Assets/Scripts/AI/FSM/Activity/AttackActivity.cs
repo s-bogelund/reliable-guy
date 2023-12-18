@@ -8,6 +8,7 @@ namespace AI.FSM.Activity
     public class AttackActivity : Activity
     {
         public float attackDelay = 3;
+        public AudioClip attackClip = null;
         private float _timer = 0;
         
         public override void Enter(BaseStateMachine stm)
@@ -27,6 +28,8 @@ namespace AI.FSM.Activity
             {
                 var animator = stm.GetComponent<Animator>();
                 animator.SetTrigger("attack");
+                if (attackClip != null)
+                    stm.GetComponent<AudioSource>().PlayOneShot(attackClip);
                 
                 _timer = 0;
             }

@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
+using System.Threading;
 using Controls;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +22,8 @@ public class GameManager : MonoBehaviour
                 // Get the players animator and set the dead trigger
                 player.GetComponent<Animator>().SetTrigger("dead");
                 player.GetComponent<InputHandler>().enabled = false;
+                StartCoroutine(RespawnPlayer() );
+                 
             }
             else
             {
@@ -77,5 +82,15 @@ public class GameManager : MonoBehaviour
             HP = 0;
             IsDead = true;
         }
+    }
+
+    private IEnumerator RespawnPlayer()
+    {
+        yield return new WaitForSeconds(2);
+        HP = maxHP;
+        player.GetComponent<Animator>().SetTrigger("respawn");
+        SceneManager.LoadScene("Town");
+        player.GetComponent<Transform>().position = new Vector3(-7, -2, 0);
+        player.GetComponent<InputHandler>().enabled = true;
     }
 }

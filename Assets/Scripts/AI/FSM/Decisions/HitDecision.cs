@@ -8,7 +8,7 @@ namespace AI.FSM.Decisions
         public bool isHit = true;
         public override bool Decide(BaseStateMachine stm)
         {
-            return stm.GetComponent<EnemyState>().isHit == isHit && !stm.GetComponent<EnemyState>().isDead;
+            return true;
         }
     }
 }

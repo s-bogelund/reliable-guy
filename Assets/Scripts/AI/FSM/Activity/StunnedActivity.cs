@@ -21,6 +21,7 @@ namespace AI.FSM.Activity
 
         public override void Execute(BaseStateMachine stm)
         {
+            Debug.Log("Stunned enemy is hit:" + _enemyState.isHit);
             if (_enemyState.isHit)
             {
                 _enemyState.hitTimer += Time.deltaTime;
@@ -35,6 +36,12 @@ namespace AI.FSM.Activity
                     }
                 }
             }
+            else
+            {
+                Debug.Log("Stunned enemy is not hit");
+                Exit(stm);
+            }
+            
         }
 
         public override void Exit(BaseStateMachine stm)

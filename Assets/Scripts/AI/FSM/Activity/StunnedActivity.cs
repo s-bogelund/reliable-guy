@@ -24,6 +24,7 @@ namespace AI.FSM.Activity
 
         public override void Execute(BaseStateMachine stm)
         {
+            _enemyState = stm.GetComponent<EnemyState>();
             if (_enemyState.isHit)
             {
                 _enemyState.hitTimer += Time.deltaTime;

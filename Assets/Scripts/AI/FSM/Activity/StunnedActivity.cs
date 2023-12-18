@@ -39,6 +39,12 @@ namespace AI.FSM.Activity
                     }
                 }
             }
+            else
+            {
+                Debug.Log("Stunned enemy is not hit");
+                Exit(stm);
+            }
+            
         }
 
         public override void Exit(BaseStateMachine stm)

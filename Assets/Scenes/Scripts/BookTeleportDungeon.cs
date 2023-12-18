@@ -9,7 +9,6 @@ public class BookTeleportDungeon : SceneChangeTrigger
     public float interactionDistance = 2f; // Distance within which interaction is possible
     private PlayerController _playerController; // Reference to the PlayerController script
     private SpriteRenderer _playerSpriteRenderer;
-    private InputHandler _inputHandler;
     public GameObject player;
     private bool _isInitialized = false;
     
@@ -19,7 +18,6 @@ public class BookTeleportDungeon : SceneChangeTrigger
         player = GameObject.FindGameObjectWithTag("Player");
 
         _playerController = player.GetComponent<PlayerController>();
-        _inputHandler = player.GetComponent<InputHandler>();
         
         _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
         // TODO: SHOULD BE FALSE WHEN GAMEMANAGER IS IMPLEMENTED

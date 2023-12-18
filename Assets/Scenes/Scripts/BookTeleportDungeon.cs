@@ -1,24 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using Controls;
 using Scenes.Scripts;
 using UnityEngine;
 
 public class BookTeleportDungeon : SceneChangeTrigger
 {
+    public AudioSource audioSource;
     public float interactionDistance = 2f; // Distance within which interaction is possible
     private PlayerController _playerController; // Reference to the PlayerController script
     private SpriteRenderer _playerSpriteRenderer;
-    private InputHandler _inputHandler;
     public GameObject player;
     private bool _isInitialized = false;
+    
     void Start()
     {
         // Find the player's GameObject and get the required components
         player = GameObject.FindGameObjectWithTag("Player");
 
         _playerController = player.GetComponent<PlayerController>();
-        _inputHandler = player.GetComponent<InputHandler>();
         
         _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
         // TODO: SHOULD BE FALSE WHEN GAMEMANAGER IS IMPLEMENTED
@@ -46,8 +45,18 @@ public class BookTeleportDungeon : SceneChangeTrigger
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            TriggerSceneChange();
+            StartCoroutine(PlaySoundThenChangeScene());
         }
+    }
+
+    IEnumerator PlaySoundThenChangeScene()
+    {
+        audioSource.Play();
+
+        // Wait for the specified delay
+        yield return new WaitForSeconds(0.5f);
+
+        TriggerSceneChange();
     }
 
     protected override void TriggerSceneChange()

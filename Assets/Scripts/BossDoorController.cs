@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class BossDoorController : MonoBehaviour
 {
+    public AudioClip doorOpenClip;
+    
     public DoorData openDoorData;
     public Tilemap doorTilemap;
     private TilemapCollider2D doorCollider;
@@ -17,6 +19,9 @@ public class BossDoorController : MonoBehaviour
 
     public void OpenDoor()
     {
+        if (doorOpenClip)
+            GetComponent<AudioSource>().PlayOneShot(doorOpenClip);
+        
         foreach (var tilePosition in openDoorData.doorTilePositions)
         {
             doorTilemap.SetTile(tilePosition.position, tilePosition.tile);

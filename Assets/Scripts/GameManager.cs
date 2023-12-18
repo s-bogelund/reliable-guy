@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int HP = 5;
     public int maxHP = 5;
     public GameObject player;
-
+    public bool hasSword = false;
     public bool IsDead
     {
         get => _isDead;

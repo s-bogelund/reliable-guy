@@ -22,6 +22,11 @@ namespace AI.FSM.Activity
                     controller.OpenDoor();
                 }
             }
+            else if (stm.gameObject.name == "Cyclops")
+            {
+                // enable teleport
+                GameObject.FindGameObjectWithTag("Teleport").GetComponent<SpriteRenderer>().enabled = true;
+            }
             if (deathClip != null)
                 stm.GetComponent<AudioSource>().PlayOneShot(deathClip);
         }

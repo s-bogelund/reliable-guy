@@ -29,12 +29,21 @@ public class DialogTrigger : MonoBehaviour
             if (collision.CompareTag("Player"))
             {
                 Debug.Log(Dialogs[0].name);
+                if(gameObject.name == "TownNarratorReturns" && !GameManager.Instance.isFirstRun)
+                {
+                    return;
+                }
+                
                 foreach (Dialog dialog in Dialogs)
                 {
                      _dialogManager.StartDialog(dialog);
                 }
                 _dialogManager.DisplayNextSentence();
                 Destroy(gameObject);
+                if (gameObject.name == "TownNarratorReturns")
+                {   
+                    GameManager.Instance.isFirstRun = false;
+                }
             }
         }
         else

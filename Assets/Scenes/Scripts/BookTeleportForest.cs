@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class BookTeleportForest : SceneChangeTrigger
 {
+    public AudioSource audioSource;
     public float interactionDistance = 2f; // Distance within which interaction is possible
     private PlayerController _playerController; // Reference to the PlayerController script
     private SpriteRenderer _playerSpriteRenderer;
     public GameObject player;
     private bool _isInitialized = false;
+    public SpriteRenderer spriteRenderer;
+    
     void Start()
     {
         // Find the player's GameObject and get the required components
@@ -18,7 +21,7 @@ public class BookTeleportForest : SceneChangeTrigger
         _playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
         
         // TODO: SHOULD BE FALSE WHEN GAMEMANAGER IS IMPLEMENTED
-        gameObject.SetActive(true);
+        spriteRenderer.enabled = false;
     }
     
     void Update()
@@ -52,8 +55,18 @@ public class BookTeleportForest : SceneChangeTrigger
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            TriggerSceneChange();
+            StartCoroutine(PlaySoundThenChangeScene());
         }
+    }
+
+    IEnumerator PlaySoundThenChangeScene()
+    {
+        audioSource.Play();
+
+        // Wait for the specified delay
+        yield return new WaitForSeconds(0.5f);
+
+        TriggerSceneChange();
     }
 
     protected override void TriggerSceneChange()

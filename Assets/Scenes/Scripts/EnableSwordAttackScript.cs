@@ -10,7 +10,6 @@ public class EnableSwordAttackScript : MonoBehaviour
     private InputHandler _inputHandler;
 
     public GameObject player;
-    public ActionsCommandsScheme controls;
 
     void Start()
     {
@@ -40,10 +39,7 @@ public class EnableSwordAttackScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            InputHandler.instance.UpdateActionsCommandsList(controls.actionCommandList);
-            InputHandler.instance.UpdateActionsCommandsBindings();
             gameObject.SetActive(false);
-            
         }
     }
     bool IsPlayerFacingItem()
